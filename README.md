@@ -17,3 +17,15 @@ yarn dev
 ```
 
 The app will be running on [http://localhost:3000](http://localhost:3000).
+
+## Linting and Testing
+
+To lint the app using ESLint, use:
+```bash
+yarn lint
+```
+
+To run tests using Jest, use:
+```bash
+yarn test
+```
