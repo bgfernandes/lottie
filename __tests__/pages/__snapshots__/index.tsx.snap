@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home matches the snapshot 1`] = `
+<div>
+  Hello world.
+  <p
+    className="flex justify-center"
+  >
+    This page is using tailwindcss.
+  </p>
+</div>
+`;
