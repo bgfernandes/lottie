@@ -11,7 +11,7 @@ describe('Home', () => {
   it('renders hello world', () => {
     const { getByText } = render(<Home />)
 
-    const helloWorld = getByText('Hello something.')
+    const helloWorld = getByText('Hello world.')
 
     expect(helloWorld).toBeInTheDocument()
   })
