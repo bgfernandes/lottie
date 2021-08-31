@@ -1,6 +1,6 @@
 import type { NextPage, GetServerSideProps } from 'next'
 import { gql, useQuery } from '@apollo/client'
-import client from '../apollo/client'
+import { initializeApollo } from '../apollo/client'
 
 const HELLO_MESSAGE_QUERY = gql`
   query HelloMessage {
@@ -11,12 +11,17 @@ const HELLO_MESSAGE_QUERY = gql`
 `
 
 export const getServerSideProps: GetServerSideProps = async (_context) => {
-  const { data } = await client.query({
+  const apolloClient = initializeApollo()
+
+  const { data } = await apolloClient.query({
     query: HELLO_MESSAGE_QUERY,
   })
 
   return {
-    props: { serverSideData: data },
+    props: {
+      serverSideData: data,
+      initialApolloState: apolloClient.cache.extract()
+     },
   }
 }
 
