@@ -8,5 +8,13 @@ exports[`Home matches the snapshot 1`] = `
   >
     This page is using tailwindcss.
   </p>
+  <p>
+    This message was fetched from the graphql API on the server side: 
+    Hello from Apollo.
+  </p>
+  <p>
+    This message was fetched from the graphql API on the client side: 
+    loading
+  </p>
 </div>
 `;
