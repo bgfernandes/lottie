@@ -1,12 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { ApolloServer } from 'apollo-server-micro'
-import { typeDefs } from '../../apollo/type-defs'
-import { resolvers } from '../../apollo/resolvers'
+import createApolloServer from '../../apollo/server'
 
-const apolloServer = new ApolloServer({
-  typeDefs,
-  resolvers
-})
+const apolloServer = createApolloServer()
 
 const startServer = apolloServer.start()
 
