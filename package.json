@@ -10,8 +10,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.10",
     "apollo-server-micro": "^3.3.0",
     "graphql": "^15.5.2",
+    "graphql-tools": "^8.1.0",
     "micro": "^9.3.4",
     "next": "11.1.0",
     "react": "17.0.2",
