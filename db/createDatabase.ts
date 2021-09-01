@@ -6,11 +6,11 @@ import knex from 'knex'
 import dotenv from 'dotenv'
 import path from 'path'
 
-dotenv.config({
-  path: path.resolve(__dirname, '..', '.env.local')
-})
-
 if (require.main === module) {
+  dotenv.config({
+    path: path.resolve(__dirname, '..', '.env.local')
+  })
+
   createDatabase()
 }
 
@@ -29,8 +29,12 @@ export default function createDatabase():Promise<void> {
       console.log(`Created Database ${process.env.DB_DATABASE}`)
     })
     .catch((err) => {
-      console.error(`Error creating database ${process.env.DB_DATABASE}`)
-      console.error(err)
+      if (err.message.match(/^CREATE DATABASE .*; - database ".*" already exists$/)) {
+        console.log(`Database ${process.env.DB_DATABASE} already exists.`)
+      } else {
+        console.error(`Error creating database ${process.env.DB_DATABASE}`)
+        console.error(err)
+      }
     })
     .finally(() => {
       knexInstance.destroy()
