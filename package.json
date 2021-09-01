@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.10",
+    "apollo-datasource": "^3.1.0",
     "apollo-server-micro": "^3.3.0",
     "dotenv": "^10.0.0",
     "graphql": "^15.5.2",
