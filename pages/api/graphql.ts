@@ -1,5 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { Model } from 'objection'
 import createApolloServer from '../../apollo/server'
+import createKnexInstance from '../../db/knexInstance'
+
+// Configure Objection and start up the Database
+Model.knex(createKnexInstance())
 
 const apolloServer = createApolloServer()
 
