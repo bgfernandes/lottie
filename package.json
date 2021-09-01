@@ -19,8 +19,10 @@
     "dotenv": "^10.0.0",
     "graphql": "^15.5.2",
     "graphql-tools": "^8.1.0",
+    "json-schema": "^0.3.0",
     "knex": "^0.95.10",
     "micro": "^9.3.4",
+    "moment": "^2.29.1",
     "next": "11.1.0",
     "objection": "^2.2.15",
     "pg": "^8.7.1",
@@ -30,6 +32,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
+    "@types/json-schema": "^7.0.9",
     "@types/react": "17.0.19",
     "@types/react-test-renderer": "^17.0.1",
     "autoprefixer": "^10.3.3",
