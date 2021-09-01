@@ -10,7 +10,9 @@ For simplicity, the GraphQL endpoint is served together with the application, in
 2. Install Yarn package manager: `npm install -g yarn`.
 3. Run `yarn install` to install the dependencies.
 4. Install and run a local Postgres instance. A `docker-compose.yml` file is provided, run `docker-compose up` to have a DB instance running with no hassle.
-5. Initialize the DB and run migrations with `yarn db:setup`.
+5. Copy *.env.local.sample* to *.env.local* and update it as needed.
+6. Update *.env.test* file as needed, some of the integration tests need a live DB to run.
+7. Initialize the DB and run migrations with `yarn db:setup`.
 
 ## Running in Development
 
