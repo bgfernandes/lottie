@@ -24,6 +24,12 @@ jobs:
           cache: yarn
           cache-dependency-path: yarn.lock
 
+      - name: Setup PostgreSQL
+        uses: Harmon758/postgresql-action@v1.0.0
+        with:
+          postgresql user: postgres
+          postgresql password: password
+
       - name: Yarn Install
         run: yarn install
 

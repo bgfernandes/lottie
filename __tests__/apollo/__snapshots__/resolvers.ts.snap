@@ -22,14 +22,14 @@ Object {
   "data": Object {
     "lottieFiles": Array [
       Object {
-        "createdAt": "1630425600000",
+        "createdAt": "1630454400000",
         "id": "1",
-        "updatedAt": "1630512000000",
+        "updatedAt": "1630540800000",
       },
       Object {
-        "createdAt": "1630598400000",
+        "createdAt": "1630627200000",
         "id": "2",
-        "updatedAt": "1630684800000",
+        "updatedAt": "1630713600000",
       },
     ],
   },

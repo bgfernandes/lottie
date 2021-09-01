@@ -52,13 +52,13 @@ describe('Resolvers', () => {
   it('runs the lottieFiles query successfuly and returns data', async () => {
     await LottieFile.query().insert({
       id: '1',
-      createdAt: moment('2021-09-01'),
-      updatedAt: moment('2021-09-02')
+      createdAt: moment('2021-09-01 00:00:00Z').toISOString(),
+      updatedAt: moment('2021-09-02 00:00:00Z').toISOString()
     })
     await LottieFile.query().insert({
       id: '2',
-      createdAt: moment('2021-09-03'),
-      updatedAt: moment('2021-09-04')
+      createdAt: moment('2021-09-03 00:00:00Z').toISOString(),
+      updatedAt: moment('2021-09-04 00:00:00Z').toISOString()
     })
 
     const LOTTIE_FILES_QUERY = gql`
