@@ -16,3 +16,29 @@ Object {
   },
 }
 `;
+
+exports[`Resolvers runs the lottieFiles query successfuly and returns data 1`] = `
+Object {
+  "data": Object {
+    "lottieFiles": Array [
+      Object {
+        "createdAt": "1630454400000",
+        "id": "1",
+        "updatedAt": "1630540800000",
+      },
+      Object {
+        "createdAt": "1630627200000",
+        "id": "2",
+        "updatedAt": "1630713600000",
+      },
+    ],
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
