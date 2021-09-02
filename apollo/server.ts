@@ -1,11 +1,11 @@
 import { ApolloServer } from 'apollo-server-micro'
 import { typeDefs } from './type-defs'
 import { resolvers } from './resolvers'
-import Database from './dataSources/database'
+import DatabaseSource from './dataSources/database-source'
 
 export default function createApolloServer() {
   const dataSources = () => ({
-    database: new Database()
+    databaseSource: new DatabaseSource()
   })
 
   return new ApolloServer({

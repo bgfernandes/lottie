@@ -1,8 +1,8 @@
-import Database from './dataSources/database'
+import DatabaseSource from './dataSources/database-source'
 
 type Context = {
   dataSources: {
-    database: Database
+    databaseSource: DatabaseSource
   }
 }
 
@@ -15,6 +15,6 @@ export const resolvers = {
       _args: {},
       { dataSources }: Context
     ) =>
-      dataSources.database.getLottieFiles()
+      dataSources.databaseSource.getLottieFiles()
   }
 }
