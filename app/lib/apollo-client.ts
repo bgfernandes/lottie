@@ -1,32 +1,17 @@
 
-import { ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
+import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
 import { useMemo } from 'react'
 
 let apolloClient: ApolloClient<NormalizedCacheObject>
 
 function createApolloClient() {
-  if (typeof window === 'undefined') {
-    // code is running in the server side
-
-    return new ApolloClient({
-      ssrMode: true,
-      link: new SchemaLink({ schema }),
-      cache: new InMemoryCache(),
-    })
-  } else {
-    // code is running in the browser
-
-    const { HttpLink } = require('@apollo/client/link/http')
-
-    return new ApolloClient({
-      ssrMode: false,
-      link: new HttpLink({
-        uri: '/api/graphql',
-        credentials: 'same-origin',
-      }),
-      cache: new InMemoryCache(),
-    })
-  }
+  return new ApolloClient({
+    ssrMode: typeof window === 'undefined', // set to true for SSR
+    link: new HttpLink({
+      uri: 'http://localhost:3001', // TODO switch to env variable
+    }),
+    cache: new InMemoryCache(),
+  })
 }
 
 /*
