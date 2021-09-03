@@ -8,9 +8,6 @@ function createApolloClient() {
   if (typeof window === 'undefined') {
     // code is running in the server side
 
-    const { SchemaLink } = require('@apollo/client/link/schema')
-    const { schema } = require('./schema')
-
     return new ApolloClient({
       ssrMode: true,
       link: new SchemaLink({ schema }),

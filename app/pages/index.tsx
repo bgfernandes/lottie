@@ -1,6 +1,6 @@
 import type { NextPage, GetServerSideProps } from 'next'
 import { gql, useQuery } from '@apollo/client'
-import { initializeApollo } from '../apollo/client'
+import { initializeApollo } from '../apollo-client'
 
 export const HELLO_MESSAGE_QUERY = gql`
   query HelloMessage {
