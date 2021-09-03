@@ -8,7 +8,7 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // set to true for SSR
     link: new HttpLink({
-      uri: 'http://localhost:3001', // TODO switch to env variable
+      uri: process.env.GRAPHQL_SERVER_URL,
     }),
     cache: new InMemoryCache(),
   })
