@@ -22,7 +22,9 @@ jobs:
         with:
           node-version: 14.17.4
           cache: yarn
-          cache-dependency-path: yarn.lock
+          cache-dependency-path: |
+            app/yarn.lock
+            api/yarn.lock
 
       - name: Setup PostgreSQL
         uses: Harmon758/postgresql-action@v1.0.0
@@ -30,11 +32,16 @@ jobs:
           postgresql user: postgres
           postgresql password: password
 
-      - name: Yarn Install
-        run: yarn install
+      - name: Lint and Test APP
+        working-directory: ./app
+        run: |
+          yarn install
+          yarn lint
+          yarn test
 
-      - name: Lint
-        run: yarn lint
-
-      - name: Tests
-        run: yarn test
+      - name: Lint and Test API
+        working-directory: ./api
+        run: |
+          yarn install
+          yarn lint
+          yarn test
