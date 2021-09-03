@@ -6,7 +6,7 @@ import { resolvers } from './resolvers'
 import DatabaseSource from './dataSources/database-source'
 import { Model } from 'objection'
 
-export default function createApolloServer(httpServer: http.Server ): ApolloServer {
+export default function createApolloServer(httpServer: http.Server | undefined = undefined): ApolloServer {
   // This server requires that Objection is already set with a knex instance
   if (!Model.knex()) {
     throw new Error('Initialize a Knex instance and give it to Objection before using createApolloServer.')
@@ -16,10 +16,15 @@ export default function createApolloServer(httpServer: http.Server ): ApolloServ
     databaseSource: new DatabaseSource()
   })
 
+  let plugins = undefined
+  if (httpServer) {
+    plugins = [ApolloServerPluginDrainHttpServer({ httpServer })]
+  }
+
   return new ApolloServer({
     typeDefs,
     resolvers,
     dataSources,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
+    plugins
   })
 }
