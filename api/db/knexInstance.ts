@@ -1,6 +1,6 @@
-import knex from 'knex'
+import knex, { Knex } from 'knex'
 
-export default function createKnexInstance() {
+export default function createKnexInstance(): Knex {
   return knex({
     client: 'pg',
     connection: {

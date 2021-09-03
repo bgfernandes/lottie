@@ -1,4 +1,5 @@
 import DatabaseSource from './dataSources/database-source'
+import LottieFile from './models/LottieFile'
 
 type Context = {
   dataSources: {
@@ -8,13 +9,13 @@ type Context = {
 
 export const resolvers = {
   Query: {
-    hello: () => ({ message: 'Hello from Apollo.' }),
+    hello: (): { message: string } => ({ message: 'Hello from Apollo.' }),
 
     lottieFiles: (
       _parent: undefined,
-      _args: {},
+      _args: Record<string, never>,
       { dataSources }: Context
-    ) =>
+    ): Promise<LottieFile[]> =>
       dataSources.databaseSource.getLottieFiles()
   }
 }

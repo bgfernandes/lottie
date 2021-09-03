@@ -1,11 +1,11 @@
 import moment from 'moment'
-import { Model, snakeCaseMappers } from 'objection'
+import Objection, { Model, snakeCaseMappers } from 'objection'
 
 export default class BaseModel extends Model {
   createdAt: string | moment.Moment | undefined
   updatedAt: string | moment.Moment | undefined;
 
-  static get columnNameMappers() {
+  static get columnNameMappers(): Objection.ColumnNameMappers {
     return snakeCaseMappers()
   }
 

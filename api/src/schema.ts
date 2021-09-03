@@ -6,3 +6,5 @@ export const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 })
+
+// TODO remove this file?
