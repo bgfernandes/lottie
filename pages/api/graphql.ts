@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { Model } from 'objection'
+import { GraphQLOperation, processRequest } from 'graphql-upload'
 import createApolloServer from '../../apollo/server'
 import createKnexInstance from '../../db/knexInstance'
 
@@ -10,7 +11,11 @@ const apolloServer = createApolloServer()
 
 const startServer = apolloServer.start()
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+interface Request extends NextApiRequest {
+  filePayload: GraphQLOperation | GraphQLOperation[]
+}
+
+export default async function handler(req: Request, res: NextApiResponse) {
   res.setHeader('Access-Control-Allow-Credentials', 'true')
   res.setHeader(
     'Access-Control-Allow-Origin',
@@ -25,6 +30,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return false
   }
 
+  const contentType = req.headers['content-type']
+  if (contentType && contentType.startsWith('multipart/form-data')) {
+    console.log('IS MULTIPART!!!')
+    req.filePayload = await processRequest(req, res)
+    console.log('FILE IS HERE')
+    console.log(req.filePayload)
+  }
+
   await startServer
   await apolloServer.createHandler({
     path: '/api/graphql',
@@ -33,6 +46,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 export const config = {
   api: {
-    bodyParser: false,
+    bodyParser: true,
   },
 }
