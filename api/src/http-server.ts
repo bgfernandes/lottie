@@ -16,6 +16,8 @@ export default async function createHttpServer(): Promise<http.Server> {
   // You must await server.start() before calling server.applyMiddleware. You can add other middleware to app before or after calling applyMiddleware.
   await apolloServer.start()
 
+  app.use('/local_file_store', express.static('local_file_store'))
+
   app.use(graphqlUploadExpress({
     maxFiles: 1,
     maxFileSize: 2097152 // 2 megabytes

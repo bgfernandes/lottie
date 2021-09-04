@@ -8,3 +8,7 @@
 
 # local database data
 /data
+
+# local file storage folder
+local_file_store/*
+!local_file_store/.gitkeep

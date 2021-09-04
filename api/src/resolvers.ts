@@ -1,8 +1,9 @@
 import { FileUpload, GraphQLUpload } from 'graphql-upload'
-import { finished } from 'stream/promises'
-import fs from 'fs'
+import { nanoid } from 'nanoid'
+import { extension } from 'mime-types'
 import DatabaseSource from './dataSources/database-source'
 import LottieFile from './models/LottieFile'
+import localUploader from './util/file-uploaders/localUploader'
 
 type Context = {
   dataSources: {
@@ -33,15 +34,10 @@ export const resolvers = {
     ) : Promise<{ filename: string, mimetype: string, encoding: string }> => {
       const { createReadStream, filename, mimetype, encoding } = await file
 
-      // Invoking the `createReadStream` will return a Readable Stream.
-      // See https://nodejs.org/api/stream.html#stream_readable_streams
-      const stream = createReadStream()
+      const newFileName = nanoid() + '.' + extension(mimetype)
 
-      // This is purely for demonstration purposes and will overwrite the
-      // local-file-output.txt in the current working directory on EACH upload.
-      const out = fs.createWriteStream('local-file-output.txt')
-      stream.pipe(out)
-      await finished(out)
+      const { url } = await localUploader(newFileName, createReadStream())
+      console.log(url) // TODO save in the DB
 
       return { filename, mimetype, encoding }
     },
