@@ -23,6 +23,7 @@ In the */api* folder sits the application that hosts the GraphQL API endpoint.
 In the */app* folder sits the application that serves the front-end pages using the Next.JS framework.
 
 1. Run `yarn install` to install the dependencies.
+2. Copy *.env.local.sample* to *.env.local* and update it as needed.
 
 
 ## Running in Development

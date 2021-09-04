@@ -5,10 +5,11 @@ import { useMemo } from 'react'
 let apolloClient: ApolloClient<NormalizedCacheObject>
 
 function createApolloClient() {
+  console.log(process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URL)
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // set to true for SSR
     link: new HttpLink({
-      uri: process.env.GRAPHQL_SERVER_URL,
+      uri: process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URL,
     }),
     cache: new InMemoryCache(),
   })
