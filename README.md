@@ -4,7 +4,7 @@ A web application using Next.JS and Apollo Server.
 This project uses a [Github Project Board](https://github.com/bgfernandes/lottie/projects/1) for organization.
 
 ## Development setup
-This repo contains two applications, and both require Node JS (https://nodejs.org/). For this repo, I'm using version 14.17.4, as denoted in the *.tool-versions* files. I recommend using a node versioning manager, like ASDF (https://github.com/asdf-vm/asdf) with the NodeJS plugin (https://github.com/asdf-vm/asdf-nodejs). NVM is also very popular (https://github.com/nvm-sh/nvm).
+This repo contains two applications, and both require Node JS (https://nodejs.org/). For this repo, I'm using version 16.8.0, as denoted in the *.tool-versions* files. I recommend using a node versioning manager, like ASDF (https://github.com/asdf-vm/asdf) with the NodeJS plugin (https://github.com/asdf-vm/asdf-nodejs). NVM is also very popular (https://github.com/nvm-sh/nvm).
 
 The apps in this repo also require the Yarn package manager, that you can install it with `npm install -g yarn`.
 
