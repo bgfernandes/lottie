@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Share renders successfully 1`] = `
+<div>
+  <div>
+    Choose a file to upload
+    <br />
+    <input
+      required=""
+      type="file"
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Share renders successfully when the lottie is not found 1`] = `
+<div>
+  <div>
+    Lottie not found.
+  </div>
+</div>
+`;
+
+exports[`Share renders successfully when there is a lottie 1`] = `
+<div>
+  <div>
+    Slug: 
+    IDxl4QWcIVEWAtVTcF6ID
+    <br />
+    Url: 
+    http://localhost:3001/local_file_store/IDxl4QWcIVEWAtVTcF6ID.json
+    <br />
+    Created At: 
+    Fri Jul 26 53647 00:31:44 GMT+0800
+    <br />
+    Last Updated At: 
+    Fri Jul 26 53647 00:31:44 GMT+0800
+  </div>
+</div>
+`;
