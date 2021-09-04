@@ -15,6 +15,7 @@ dotenv.config({
 export default {
   env: process.env.NODE_ENV || 'development',
   port: process.env.PORT,
+  domain: process.env.DOMAIN,
 
   db_host: process.env.DB_HOST,
   db_user: process.env.DB_USER,

@@ -7,7 +7,19 @@ export const typeDefs = gql`
     """
     Query for LottieFiles
     """
-    lottieFiles: [LottieFile]
+    lottieFiles: [LottieFile]!
+
+    """
+    Query for a single LottieFile by slug
+    """
+    lottieFile(slug: String!): LottieFile
+  }
+
+  type Mutation {
+    """
+    Uploads a LottieFile
+    """
+    uploadLottieFile(file: Upload!): LottieFile!
   }
 
   type HelloMessage {
@@ -21,5 +33,9 @@ export const typeDefs = gql`
     id: ID!
     createdAt: String!
     updatedAt: String!
+    slug: String!
+    url: String!
   }
+
+  scalar Upload
 `

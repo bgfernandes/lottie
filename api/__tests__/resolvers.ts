@@ -48,28 +48,72 @@ describe('Resolvers', () => {
     expect(res).toMatchSnapshot()
   })
 
-  it('runs the lottieFiles query successfuly and returns data', async () => {
-    await LottieFile.query().insert({
-      id: '1',
-      createdAt: moment('2021-09-01 00:00:00Z').toISOString(),
-      updatedAt: moment('2021-09-02 00:00:00Z').toISOString()
+  describe('lottieFiles query', () => {
+    it('runs the lottieFiles query successfuly and returns data', async () => {
+      await LottieFile.query().insert({
+        id: '1',
+        slug: 'W6HDcJoY946T8gGYLiiAJ',
+        url: 'http://some_url.json',
+        createdAt: moment('2021-09-01 00:00:00Z').toISOString(),
+        updatedAt: moment('2021-09-02 00:00:00Z').toISOString()
+      })
+      await LottieFile.query().insert({
+        id: '2',
+        slug: 'W6HDcJoY946T8gGYLiiA2',
+        url: 'http://some_url2.json',
+        createdAt: moment('2021-09-03 00:00:00Z').toISOString(),
+        updatedAt: moment('2021-09-04 00:00:00Z').toISOString()
+      })
+
+      const LOTTIE_FILES_QUERY = gql`
+        query {
+          lottieFiles {
+            id,
+            createdAt,
+            updatedAt
+          }
+        }
+      `
+      const res = await server.executeOperation({ query:  LOTTIE_FILES_QUERY})
+      expect(res).toMatchSnapshot()
     })
-    await LottieFile.query().insert({
-      id: '2',
-      createdAt: moment('2021-09-03 00:00:00Z').toISOString(),
-      updatedAt: moment('2021-09-04 00:00:00Z').toISOString()
+  })
+
+  describe('lottieFile query', () => {
+    const LOTTIE_FILE_QUERY = gql`
+        query ($slug: String!) {
+          lottieFile(slug: $slug) {
+            id,
+            slug,
+            url,
+            createdAt,
+            updatedAt
+          }
+        }
+      `
+
+    it('returns empty when the lottie is not found', async () => {
+      const res = await server.executeOperation({
+        query:  LOTTIE_FILE_QUERY,
+        variables: { slug: 'some slug' }
+      })
+      expect(res).toMatchSnapshot()
     })
 
-    const LOTTIE_FILES_QUERY = gql`
-      query {
-        lottieFiles {
-          id,
-          createdAt,
-          updatedAt
-        }
-      }
-    `
-    const res = await server.executeOperation({ query:  LOTTIE_FILES_QUERY})
-    expect(res).toMatchSnapshot()
+    it('returns the lottie successfully', async () => {
+      await LottieFile.query().insert({
+        id: '1',
+        slug: 'W6HDcJoY946T8gGYLiiAJ',
+        url: 'http://some_url.json',
+        createdAt: moment('2021-09-01 00:00:00Z').toISOString(),
+        updatedAt: moment('2021-09-02 00:00:00Z').toISOString()
+      })
+
+      const res = await server.executeOperation({
+        query:  LOTTIE_FILE_QUERY,
+        variables: { slug: 'W6HDcJoY946T8gGYLiiAJ' }
+      })
+      expect(res).toMatchSnapshot()
+    })
   })
 })

@@ -1,16 +1,14 @@
 
-import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
+import { ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
+import { createUploadLink } from 'apollo-upload-client'
 import { useMemo } from 'react'
 
 let apolloClient: ApolloClient<NormalizedCacheObject>
 
 function createApolloClient() {
-  console.log(process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URL)
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // set to true for SSR
-    link: new HttpLink({
-      uri: process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URL,
-    }),
+    link: createUploadLink({ uri: process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URL }),
     cache: new InMemoryCache(),
   })
 }

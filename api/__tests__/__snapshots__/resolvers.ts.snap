@@ -1,10 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Resolvers runs the home query successfully 1`] = `
+exports[`Resolvers lottieFile query returns empty when the lottie is not found 1`] = `
 Object {
   "data": Object {
-    "hello": Object {
-      "message": "Hello from Apollo.",
+    "lottieFile": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Resolvers lottieFile query returns the lottie successfully 1`] = `
+Object {
+  "data": Object {
+    "lottieFile": Object {
+      "createdAt": "1630454400000",
+      "id": "1",
+      "slug": "W6HDcJoY946T8gGYLiiAJ",
+      "updatedAt": "1630540800000",
+      "url": "http://some_url.json",
     },
   },
   "errors": undefined,
@@ -17,7 +36,7 @@ Object {
 }
 `;
 
-exports[`Resolvers runs the lottieFiles query successfuly and returns data 1`] = `
+exports[`Resolvers lottieFiles query runs the lottieFiles query successfuly and returns data 1`] = `
 Object {
   "data": Object {
     "lottieFiles": Array [
@@ -32,6 +51,23 @@ Object {
         "updatedAt": "1630713600000",
       },
     ],
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Resolvers runs the home query successfully 1`] = `
+Object {
+  "data": Object {
+    "hello": Object {
+      "message": "Hello from Apollo.",
+    },
   },
   "errors": undefined,
   "extensions": undefined,
