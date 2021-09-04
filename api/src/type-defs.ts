@@ -14,7 +14,7 @@ export const typeDefs = gql`
     """
     Uploads a LottieFile
     """
-    uploadLottieFile(file: Upload!): File!
+    uploadLottieFile(file: Upload!): LottieFile!
   }
 
   type HelloMessage {
@@ -28,13 +28,9 @@ export const typeDefs = gql`
     id: ID!
     createdAt: String!
     updatedAt: String!
+    slug: String!
+    url: String!
   }
 
   scalar Upload
-
-  type File {
-    filename: String!
-    mimetype: String!
-    encoding: String!
-  }
 `

@@ -30,16 +30,17 @@ export const resolvers = {
   Mutation: {
     uploadLottieFile: async (
       _parent: undefined,
-      { file } : UploadLottieFileArgs
-    ) : Promise<{ filename: string, mimetype: string, encoding: string }> => {
-      const { createReadStream, filename, mimetype, encoding } = await file
+      { file } : UploadLottieFileArgs,
+      { dataSources }: Context
+    ) : Promise<LottieFile> => {
+      const { createReadStream, mimetype } = await file
 
-      const newFileName = nanoid() + '.' + extension(mimetype)
+      const slug = nanoid()
+      const newFileName = slug + '.' + extension(mimetype)
 
       const { url } = await localUploader(newFileName, createReadStream())
-      console.log(url) // TODO save in the DB
 
-      return { filename, mimetype, encoding }
+      return await dataSources.databaseSource.createLottieFile({ slug, url })
     },
   },
 

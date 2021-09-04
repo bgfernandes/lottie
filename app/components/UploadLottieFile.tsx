@@ -4,7 +4,8 @@ import { ChangeEvent } from 'react'
 const UPLOAD_LOTTIE_MUTATION = gql`
   mutation uploadLottieFile($file: Upload!) {
     uploadLottieFile(file: $file) {
-      filename
+      slug
+      url
     }
   }
 `
@@ -19,7 +20,6 @@ export function UploadLottieFile() {
       files,
     }
   }: ChangeEvent<HTMLInputElement>) => {
-    console.log(files[0])
     validity.valid && files &&files[0] &&
     uploadFileMutation({ variables: { file: files[0] } }).then(() => {
       apolloClient.resetStore()
