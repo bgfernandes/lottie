@@ -5,6 +5,13 @@ This project uses a [Github Project Board](https://github.com/bgfernandes/lottie
 
 ## Choices and Considerations
 
+### Monorepo
+After some initial research, I've seen that it is possible to host an Apollo Server from an API endpoint inside a Next.JS application. Not being familiar with either Next.JS or Apollo, and thinking this would simplify development and deployment of this POC application, I naively took that initial approach.
+
+But later on when trying to "hammer in" file uploads using graphql-upload, I found that the support for this type of usage is not very documented as it seems it is not very widely adopted, even for applications this small/simple. I decided then to refactor the project into a monorepo style project containing two applications, the Next.JS app serving the pages and the front-end, and the Apollo Server running the GraphQL API endpoint, on top of the express framework.
+
+There is extensive debate about the Monorepo style, which I will not go into detail here, but I believe that for this POC application it is well suited, as it shows the features being added on both back-end and front-end components in concise manner.
+
 ### File Uploads
 This project uses [graphql-upload](https://github.com/jaydenseric/graphql-upload), which is good for quick and dirty POCs and very small apps (in terms of usage), but not very good performance wise, because it ties the server on receiving and processing the file through it, a better approach would be to use a signed upload url from a provider like AWS S3.
 
