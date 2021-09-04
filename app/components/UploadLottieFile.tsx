@@ -5,12 +5,11 @@ const UPLOAD_LOTTIE_MUTATION = gql`
   mutation uploadLottieFile($file: Upload!) {
     uploadLottieFile(file: $file) {
       slug
-      url
     }
   }
 `
 
-export function UploadLottieFile() {
+export function UploadLottieFile({ onUpload }: { onUpload: (_slug: string) => any } ) {
   const [uploadFileMutation, { loading, error }] = useMutation(UPLOAD_LOTTIE_MUTATION)
   const apolloClient = useApolloClient()
 
@@ -21,8 +20,9 @@ export function UploadLottieFile() {
     }
   }: ChangeEvent<HTMLInputElement>) => {
     validity.valid && files &&files[0] &&
-    uploadFileMutation({ variables: { file: files[0] } }).then(() => {
+    uploadFileMutation({ variables: { file: files[0] } }).then(({ data }) => {
       apolloClient.resetStore()
+      onUpload(data.uploadLottieFile.slug)
     })
   }
 
