@@ -9,9 +9,9 @@ export function ShowLottieFile({ lottieFile }: { lottieFile: LottieFile }) {
       <br />
       Url: { lottieFile.url }
       <br />
-      Created At: { moment.unix(parseInt(lottieFile.createdAt!)).toString() }
+      Created At: { moment.unix(parseInt(lottieFile.createdAt!)).utc().toString() }
       <br />
-      Last Updated At: { moment.unix(parseInt(lottieFile.updatedAt!)).toString() }
+      Last Updated At: { moment.unix(parseInt(lottieFile.updatedAt!)).utc().toString() }
     </div>
   )
 }

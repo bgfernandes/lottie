@@ -18,10 +18,10 @@ exports[`Share renders successfully when there is a lottie 1`] = `
     http://localhost:3001/local_file_store/IDxl4QWcIVEWAtVTcF6ID.json
     <br />
     Created At: 
-    Fri Jul 26 53647 00:31:44 GMT+0800
+    Thu Jul 25 53647 16:31:44 GMT+0000
     <br />
     Last Updated At: 
-    Fri Jul 26 53647 00:31:44 GMT+0800
+    Thu Jul 25 53647 16:31:44 GMT+0000
   </div>
 </div>
 `;
