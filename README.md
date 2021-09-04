@@ -3,6 +3,14 @@ A web application using Next.JS and Apollo Server.
 
 This project uses a [Github Project Board](https://github.com/bgfernandes/lottie/projects/1) for organization.
 
+## Choices and Considerations
+
+### File Uploads
+This project uses [graphql-upload](https://github.com/jaydenseric/graphql-upload), which is good for quick and dirty POCs and very small apps (in terms of usage), but not very good performance wise, because it ties the server on receiving and processing the file through it, a better approach would be to use a signed upload url from a provider like AWS S3.
+
+It also uses a local file storage system, and also serves the files from the GraphQL api backend using the express static middleware, which again, is good for quick and dirty POCs and very small apps (in terms of usage), as well as local development. Again here, a better approach would be do use a CDN for hosting the files. Storing the files uploaded by users locally on the API server is also a huge no-no because of storage constraints, and also might be open to possible security risks.
+
+
 ## Development setup
 This repo contains two applications, and both require Node JS (https://nodejs.org/). For this repo, I'm using version 16.8.0, as denoted in the *.tool-versions* files. I recommend using a node versioning manager, like ASDF (https://github.com/asdf-vm/asdf) with the NodeJS plugin (https://github.com/asdf-vm/asdf-nodejs). NVM is also very popular (https://github.com/nvm-sh/nvm).
 
