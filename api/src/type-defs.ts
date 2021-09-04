@@ -10,6 +10,13 @@ export const typeDefs = gql`
     lottieFiles: [LottieFile]
   }
 
+  type Mutation {
+    """
+    Uploads a LottieFile
+    """
+    uploadLottieFile(file: Upload!): File!
+  }
+
   type HelloMessage {
     message: String!
   }
@@ -21,5 +28,13 @@ export const typeDefs = gql`
     id: ID!
     createdAt: String!
     updatedAt: String!
+  }
+
+  scalar Upload
+
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
   }
 `
