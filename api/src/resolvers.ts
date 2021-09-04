@@ -24,7 +24,14 @@ export const resolvers = {
       _args: Record<string, never>,
       { dataSources }: Context
     ): Promise<LottieFile[]> =>
-      dataSources.databaseSource.getLottieFiles()
+      dataSources.databaseSource.getLottieFiles(),
+
+    lottieFile: (
+      _parent: undefined,
+      { slug }: { slug: string },
+      { dataSources }: Context
+    ): Promise<LottieFile | null> =>
+      dataSources.databaseSource.getLottieFile({ slug })
   },
 
   Mutation: {

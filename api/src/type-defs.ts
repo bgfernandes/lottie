@@ -7,7 +7,12 @@ export const typeDefs = gql`
     """
     Query for LottieFiles
     """
-    lottieFiles: [LottieFile]
+    lottieFiles: [LottieFile]!
+
+    """
+    Query for a single LottieFile by slug
+    """
+    lottieFile(slug: String!): LottieFile
   }
 
   type Mutation {

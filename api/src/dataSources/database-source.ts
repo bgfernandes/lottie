@@ -8,6 +8,11 @@ export default class DatabaseSource extends DataSource{
     return lottieFiles
   }
 
+  async getLottieFile({ slug }: { slug: string }): Promise<LottieFile | null> {
+    const lottieFile = await LottieFile.query().findOne({ slug })
+    return lottieFile
+  }
+
   async createLottieFile({slug, url}: { slug: string, url: string }): Promise<LottieFile> {
     return await LottieFile.query().insert({
       slug,

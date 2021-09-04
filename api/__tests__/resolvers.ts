@@ -78,4 +78,42 @@ describe('Resolvers', () => {
       expect(res).toMatchSnapshot()
     })
   })
+
+  describe('lottieFile query', () => {
+    const LOTTIE_FILE_QUERY = gql`
+        query ($slug: String!) {
+          lottieFile(slug: $slug) {
+            id,
+            slug,
+            url,
+            createdAt,
+            updatedAt
+          }
+        }
+      `
+
+    it('returns empty when the lottie is not found', async () => {
+      const res = await server.executeOperation({
+        query:  LOTTIE_FILE_QUERY,
+        variables: { slug: 'some slug' }
+      })
+      expect(res).toMatchSnapshot()
+    })
+
+    it('returns the lottie successfully', async () => {
+      await LottieFile.query().insert({
+        id: '1',
+        slug: 'W6HDcJoY946T8gGYLiiAJ',
+        url: 'http://some_url.json',
+        createdAt: moment('2021-09-01 00:00:00Z').toISOString(),
+        updatedAt: moment('2021-09-02 00:00:00Z').toISOString()
+      })
+
+      const res = await server.executeOperation({
+        query:  LOTTIE_FILE_QUERY,
+        variables: { slug: 'W6HDcJoY946T8gGYLiiAJ' }
+      })
+      expect(res).toMatchSnapshot()
+    })
+  })
 })
