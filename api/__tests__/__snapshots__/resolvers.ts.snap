@@ -1,23 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Resolvers runs the home query successfully 1`] = `
-Object {
-  "data": Object {
-    "hello": Object {
-      "message": "Hello from Apollo.",
-    },
-  },
-  "errors": undefined,
-  "extensions": undefined,
-  "http": Object {
-    "headers": Headers {
-      Symbol(map): Object {},
-    },
-  },
-}
-`;
-
-exports[`Resolvers runs the lottieFiles query successfuly and returns data 1`] = `
+exports[`Resolvers lottieFiles query runs the lottieFiles query successfuly and returns data 1`] = `
 Object {
   "data": Object {
     "lottieFiles": Array [
@@ -32,6 +15,23 @@ Object {
         "updatedAt": "1630713600000",
       },
     ],
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Resolvers runs the home query successfully 1`] = `
+Object {
+  "data": Object {
+    "hello": Object {
+      "message": "Hello from Apollo.",
+    },
   },
   "errors": undefined,
   "extensions": undefined,

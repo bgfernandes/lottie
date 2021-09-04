@@ -48,28 +48,34 @@ describe('Resolvers', () => {
     expect(res).toMatchSnapshot()
   })
 
-  it('runs the lottieFiles query successfuly and returns data', async () => {
-    await LottieFile.query().insert({
-      id: '1',
-      createdAt: moment('2021-09-01 00:00:00Z').toISOString(),
-      updatedAt: moment('2021-09-02 00:00:00Z').toISOString()
-    })
-    await LottieFile.query().insert({
-      id: '2',
-      createdAt: moment('2021-09-03 00:00:00Z').toISOString(),
-      updatedAt: moment('2021-09-04 00:00:00Z').toISOString()
-    })
+  describe('lottieFiles query', () => {
+    it('runs the lottieFiles query successfuly and returns data', async () => {
+      await LottieFile.query().insert({
+        id: '1',
+        slug: 'W6HDcJoY946T8gGYLiiAJ',
+        url: 'http://some_url.json',
+        createdAt: moment('2021-09-01 00:00:00Z').toISOString(),
+        updatedAt: moment('2021-09-02 00:00:00Z').toISOString()
+      })
+      await LottieFile.query().insert({
+        id: '2',
+        slug: 'W6HDcJoY946T8gGYLiiA2',
+        url: 'http://some_url2.json',
+        createdAt: moment('2021-09-03 00:00:00Z').toISOString(),
+        updatedAt: moment('2021-09-04 00:00:00Z').toISOString()
+      })
 
-    const LOTTIE_FILES_QUERY = gql`
-      query {
-        lottieFiles {
-          id,
-          createdAt,
-          updatedAt
+      const LOTTIE_FILES_QUERY = gql`
+        query {
+          lottieFiles {
+            id,
+            createdAt,
+            updatedAt
+          }
         }
-      }
-    `
-    const res = await server.executeOperation({ query:  LOTTIE_FILES_QUERY})
-    expect(res).toMatchSnapshot()
+      `
+      const res = await server.executeOperation({ query:  LOTTIE_FILES_QUERY})
+      expect(res).toMatchSnapshot()
+    })
   })
 })
