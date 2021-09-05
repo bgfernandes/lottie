@@ -50,6 +50,21 @@ describe('Resolvers', () => {
   })
 
   describe('lottieFiles query', () => {
+    const LOTTIE_FILES_QUERY = gql`
+      query ($limit: Int!, $offset: Int!, $type: String) {
+        lottieFiles(limit: $limit, offset: $offset, type: $type) {
+          total
+          lotties {
+            id
+            slug
+            url
+            createdAt
+            updatedAt
+          }
+        }
+      }
+    `
+
     it('runs the lottieFiles query successfuly and returns data', async () => {
       await LottieFile.query().insert({
         id: '1',
@@ -66,16 +81,10 @@ describe('Resolvers', () => {
         updatedAt: moment('2021-09-04 00:00:00Z').toISOString(),
       })
 
-      const LOTTIE_FILES_QUERY = gql`
-        query {
-          lottieFiles {
-            id
-            createdAt
-            updatedAt
-          }
-        }
-      `
-      const res = await server.executeOperation({ query: LOTTIE_FILES_QUERY })
+      const res = await server.executeOperation({
+        query: LOTTIE_FILES_QUERY,
+        variables: { limit: 10, offset: 0 },
+      })
       expect(res).toMatchSnapshot()
     })
   })

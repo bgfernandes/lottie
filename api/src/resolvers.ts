@@ -21,9 +21,14 @@ export const resolvers = {
 
     lottieFiles: (
       _parent: undefined,
-      _args: Record<string, never>,
+      {
+        offset,
+        limit,
+        type,
+      }: { offset: number; limit: number; type: string | undefined },
       { dataSources }: Context
-    ): Promise<LottieFile[]> => dataSources.databaseSource.getLottieFiles(),
+    ): Promise<{ total: number; lotties: LottieFile[] }> =>
+      dataSources.databaseSource.getLottieFiles({ offset, limit, type }),
 
     lottieFile: (
       _parent: undefined,
