@@ -8,6 +8,7 @@
     "lint": "eslint . --ext .ts",
     "test": "jest",
     "format": "prettier --write .",
+    "format-check": "prettier --check .",
     "db:migrate": "knex migrate:latest",
     "db:migrate:rollback": "knex migrate:rollback",
     "db:setup": "yarn db:create && yarn db:migrate",
