@@ -60,6 +60,11 @@ To lint the app using ESLint, use:
 yarn lint
 ```
 
+To format the app using Prettier, use:
+```bash
+yarn format
+```
+
 To run tests using Jest, use:
 ```bash
 yarn test
