@@ -1,4 +1,3 @@
-
 import express from 'express'
 import http from 'http'
 import { graphqlUploadExpress } from 'graphql-upload'
@@ -18,10 +17,12 @@ export default async function createHttpServer(): Promise<http.Server> {
 
   app.use('/local_file_store', express.static('local_file_store'))
 
-  app.use(graphqlUploadExpress({
-    maxFiles: 1,
-    maxFileSize: 2097152 // 2 megabytes
-  }))
+  app.use(
+    graphqlUploadExpress({
+      maxFiles: 1,
+      maxFileSize: 2097152, // 2 megabytes
+    })
+  )
 
   apolloServer.applyMiddleware({ app })
 

@@ -23,23 +23,22 @@ export const resolvers = {
       _parent: undefined,
       _args: Record<string, never>,
       { dataSources }: Context
-    ): Promise<LottieFile[]> =>
-      dataSources.databaseSource.getLottieFiles(),
+    ): Promise<LottieFile[]> => dataSources.databaseSource.getLottieFiles(),
 
     lottieFile: (
       _parent: undefined,
       { slug }: { slug: string },
       { dataSources }: Context
     ): Promise<LottieFile | null> =>
-      dataSources.databaseSource.getLottieFile({ slug })
+      dataSources.databaseSource.getLottieFile({ slug }),
   },
 
   Mutation: {
     uploadLottieFile: async (
       _parent: undefined,
-      { file } : UploadLottieFileArgs,
+      { file }: UploadLottieFileArgs,
       { dataSources }: Context
-    ) : Promise<LottieFile> => {
+    ): Promise<LottieFile> => {
       const { createReadStream, mimetype } = await file
 
       const slug = nanoid()
@@ -53,5 +52,5 @@ export const resolvers = {
 
   // This maps the `Upload` scalar to the implementation provided
   // by the `graphql-upload` package.
-  Upload: GraphQLUpload
+  Upload: GraphQLUpload,
 }

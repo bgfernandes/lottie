@@ -6,7 +6,10 @@ type FileUploadResponse = Promise<{
   url: string
 }>
 
-export default async function localUploader(fileName: string, stream: ReadStream): FileUploadResponse {
+export default async function localUploader(
+  fileName: string,
+  stream: ReadStream
+): FileUploadResponse {
   const localFilePath = 'local_file_store/' + fileName
   const fileUrl = config.domain + '/local_file_store/' + fileName
 
