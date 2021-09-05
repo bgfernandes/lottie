@@ -17,10 +17,12 @@ exports[`Share renders successfully when there is a lottie 1`] = `
     Url: 
     http://localhost:3001/local_file_store/IDxl4QWcIVEWAtVTcF6ID.json
     <br />
-    Created At: 
+    Created At:
+     
     Thu Jul 25 53647 16:31:44 GMT+0000
     <br />
-    Last Updated At: 
+    Last Updated At:
+     
     Thu Jul 25 53647 16:31:44 GMT+0000
   </div>
 </div>

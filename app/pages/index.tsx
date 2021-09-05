@@ -20,8 +20,8 @@ export const getServerSideProps: GetServerSideProps = async (_context) => {
   return {
     props: {
       serverSideData: data,
-      initialApolloState: apolloClient.cache.extract()
-     },
+      initialApolloState: apolloClient.cache.extract(),
+    },
   }
 }
 
@@ -38,17 +38,14 @@ const Home: NextPage<HomeProps> = ({ serverSideData }) => {
   return (
     <div>
       Hello world.
-
-      <p className="flex justify-center">
-        This page is using tailwindcss.
-      </p>
-
+      <p className="flex justify-center">This page is using tailwindcss.</p>
       <p>
-        This message was fetched from the graphql API on the server side: { serverSideData.hello.message }
+        This message was fetched from the graphql API on the server side:{' '}
+        {serverSideData.hello.message}
       </p>
-
       <p>
-        This message was fetched from the graphql API on the client side: { data ? data.hello.message : 'loading' }
+        This message was fetched from the graphql API on the client side:{' '}
+        {data ? data.hello.message : 'loading'}
       </p>
     </div>
   )

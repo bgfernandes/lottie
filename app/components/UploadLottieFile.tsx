@@ -9,21 +9,26 @@ const UPLOAD_LOTTIE_MUTATION = gql`
   }
 `
 
-export function UploadLottieFile({ onUpload }: { onUpload: (_slug: string) => any } ) {
-  const [uploadFileMutation, { loading, error }] = useMutation(UPLOAD_LOTTIE_MUTATION)
+export function UploadLottieFile({
+  onUpload,
+}: {
+  onUpload: (_slug: string) => any
+}) {
+  const [uploadFileMutation, { loading, error }] = useMutation(
+    UPLOAD_LOTTIE_MUTATION
+  )
   const apolloClient = useApolloClient()
 
   const onChange = ({
-    target: {
-      validity,
-      files,
-    }
+    target: { validity, files },
   }: ChangeEvent<HTMLInputElement>) => {
-    validity.valid && files &&files[0] &&
-    uploadFileMutation({ variables: { file: files[0] } }).then(({ data }) => {
-      apolloClient.resetStore()
-      onUpload(data.uploadLottieFile.slug)
-    })
+    validity.valid &&
+      files &&
+      files[0] &&
+      uploadFileMutation({ variables: { file: files[0] } }).then(({ data }) => {
+        apolloClient.resetStore()
+        onUpload(data.uploadLottieFile.slug)
+      })
   }
 
   let message = 'Choose a file to upload'
