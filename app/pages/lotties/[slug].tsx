@@ -7,10 +7,10 @@ import { LottieFile } from '../../types'
 export const GET_LOTTIE_FILE_QUERY = gql`
   query ($slug: String!) {
     lottieFile(slug: $slug) {
-      id,
-      slug,
-      url,
-      createdAt,
+      id
+      slug
+      url
+      createdAt
       updatedAt
     }
   }
@@ -21,14 +21,14 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   const { data } = await apolloClient.query({
     query: GET_LOTTIE_FILE_QUERY,
-    variables: { slug: query.slug }
+    variables: { slug: query.slug },
   })
 
   return {
     props: {
       lottieFile: data.lottieFile as LottieFile | null,
-      initialApolloState: apolloClient.cache.extract()
-     },
+      initialApolloState: apolloClient.cache.extract(),
+    },
   }
 }
 
@@ -36,13 +36,11 @@ type ShowLottieFilePageProps = {
   lottieFile: LottieFile | null
 }
 
-const ShowLottieFilePage: NextPage<ShowLottieFilePageProps> = ({ lottieFile }) => {
+const ShowLottieFilePage: NextPage<ShowLottieFilePageProps> = ({
+  lottieFile,
+}) => {
   if (!lottieFile) {
-    return (
-      <div>
-        Lottie not found.
-      </div>
-    )
+    return <div>Lottie not found.</div>
   }
 
   return <ShowLottieFile lottieFile={lottieFile} />

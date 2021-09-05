@@ -8,20 +8,20 @@ import { MockedProvider } from '@apollo/client/testing'
 import Home, { HELLO_MESSAGE_QUERY } from '../../pages/index'
 
 const mockServerSideData = {
-  hello: { message: 'Hello from Apollo.' }
+  hello: { message: 'Hello from Apollo.' },
 }
 
 const mockClientSideData = [
   {
     request: {
-      query: HELLO_MESSAGE_QUERY
+      query: HELLO_MESSAGE_QUERY,
     },
     result: {
       data: {
-        hello: { message: 'Hello from Apollo.' }
-      }
-    }
-  }
+        hello: { message: 'Hello from Apollo.' },
+      },
+    },
+  },
 ]
 
 describe('Home', () => {
@@ -41,22 +41,25 @@ describe('Home', () => {
     const { container } = render(
       <MockedProvider mocks={mockClientSideData} addTypename={false}>
         <Home serverSideData={mockServerSideData} />
-      </MockedProvider>)
+      </MockedProvider>
+    )
 
     expect(container).toMatchSnapshot()
   })
 
   it('shows the client side fetched message', async () => {
-    await act(async() => {
+    await act(async () => {
       const { getByText } = render(
         <MockedProvider mocks={mockClientSideData} addTypename={false}>
           <Home serverSideData={mockServerSideData} />
         </MockedProvider>
       )
 
-      await new Promise(resolve => setTimeout(resolve, 100))
+      await new Promise((resolve) => setTimeout(resolve, 100))
 
-      const clientSideMessage = getByText('This message was fetched from the graphql API on the client side: Hello from Apollo.')
+      const clientSideMessage = getByText(
+        'This message was fetched from the graphql API on the client side: Hello from Apollo.'
+      )
 
       expect(clientSideMessage).toBeInTheDocument()
     })

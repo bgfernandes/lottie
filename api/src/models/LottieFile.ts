@@ -6,11 +6,11 @@ export default class LottieFile extends BaseModel {
   slug: string | undefined
   url: string | undefined
 
-  static get tableName():string {
+  static get tableName(): string {
     return 'lottie_files'
   }
 
-  static get jsonSchema():JSONSchema7 {
+  static get jsonSchema(): JSONSchema7 {
     return {
       type: 'object',
 
@@ -19,10 +19,10 @@ export default class LottieFile extends BaseModel {
         slug: { type: 'string', minLength: 21, maxLength: 21 },
         url: { type: 'string' },
         created_at: { type: 'string' },
-        updated_at: { type: 'string' }
+        updated_at: { type: 'string' },
       },
 
-      required: ['slug', 'url']
+      required: ['slug', 'url'],
     }
   }
 }

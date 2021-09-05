@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 dotenv.config({
-  path: envFilePath
+  path: envFilePath,
 })
 
 export default {

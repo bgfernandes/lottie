@@ -1,0 +1,14 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+.env.local
+.env
+
+# local database data
+/data
+
+# local file storage folder
+local_file_store/*
+!local_file_store/.gitkeep

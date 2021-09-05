@@ -38,6 +38,7 @@ jobs:
           yarn install
           yarn lint
           yarn test
+          yarn format-check
 
       - name: Lint and Test API
         working-directory: ./api
@@ -45,3 +46,4 @@ jobs:
           yarn install
           yarn lint
           yarn test
+          yarn format-check

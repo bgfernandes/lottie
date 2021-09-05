@@ -1,5 +1,8 @@
-
-import { ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
+import {
+  ApolloClient,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from '@apollo/client'
 import { createUploadLink } from 'apollo-upload-client'
 import { useMemo } from 'react'
 
@@ -24,7 +27,9 @@ function createApolloClient() {
   would be a performance improvement. I guess it would be useful for situations like a front-end paginated list, where
   the client may go back to the first page that was loaded via server side.
 */
-export function initializeApollo(initialState : NormalizedCacheObject | null = null) {
+export function initializeApollo(
+  initialState: NormalizedCacheObject | null = null
+) {
   const _apolloClient = apolloClient ?? createApolloClient()
 
   // If your page has Next.js data fetching methods that use Apollo Client,
@@ -35,7 +40,10 @@ export function initializeApollo(initialState : NormalizedCacheObject | null = n
 
     // Restore the cache using the data passed from
     // getStaticProps/getServerSideProps combined with the existing cached data
-    _apolloClient.cache.restore({ ...existingCache, ...(initialState as object) })
+    _apolloClient.cache.restore({
+      ...existingCache,
+      ...(initialState as object),
+    })
   }
 
   // For SSG and SSR always create a new Apollo Client

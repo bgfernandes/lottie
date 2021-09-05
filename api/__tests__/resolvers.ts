@@ -28,7 +28,7 @@ describe('Resolvers', () => {
     await createDatabase()
     initializeDb()
     await Model.knex().migrate.latest({
-      directory: './db/migrations'
+      directory: './db/migrations',
     })
 
     server = createApolloServer()
@@ -39,8 +39,9 @@ describe('Resolvers', () => {
   })
 
   beforeEach(async () => {
-    await knexCleaner
-      .clean(Model.knex(), { ignoreTables: ['knex_migrations', 'knex_migrations_lock'] })
+    await knexCleaner.clean(Model.knex(), {
+      ignoreTables: ['knex_migrations', 'knex_migrations_lock'],
+    })
   })
 
   it('runs the home query successfully', async () => {
@@ -55,47 +56,47 @@ describe('Resolvers', () => {
         slug: 'W6HDcJoY946T8gGYLiiAJ',
         url: 'http://some_url.json',
         createdAt: moment('2021-09-01 00:00:00Z').toISOString(),
-        updatedAt: moment('2021-09-02 00:00:00Z').toISOString()
+        updatedAt: moment('2021-09-02 00:00:00Z').toISOString(),
       })
       await LottieFile.query().insert({
         id: '2',
         slug: 'W6HDcJoY946T8gGYLiiA2',
         url: 'http://some_url2.json',
         createdAt: moment('2021-09-03 00:00:00Z').toISOString(),
-        updatedAt: moment('2021-09-04 00:00:00Z').toISOString()
+        updatedAt: moment('2021-09-04 00:00:00Z').toISOString(),
       })
 
       const LOTTIE_FILES_QUERY = gql`
         query {
           lottieFiles {
-            id,
-            createdAt,
+            id
+            createdAt
             updatedAt
           }
         }
       `
-      const res = await server.executeOperation({ query:  LOTTIE_FILES_QUERY})
+      const res = await server.executeOperation({ query: LOTTIE_FILES_QUERY })
       expect(res).toMatchSnapshot()
     })
   })
 
   describe('lottieFile query', () => {
     const LOTTIE_FILE_QUERY = gql`
-        query ($slug: String!) {
-          lottieFile(slug: $slug) {
-            id,
-            slug,
-            url,
-            createdAt,
-            updatedAt
-          }
+      query ($slug: String!) {
+        lottieFile(slug: $slug) {
+          id
+          slug
+          url
+          createdAt
+          updatedAt
         }
-      `
+      }
+    `
 
     it('returns empty when the lottie is not found', async () => {
       const res = await server.executeOperation({
-        query:  LOTTIE_FILE_QUERY,
-        variables: { slug: 'some slug' }
+        query: LOTTIE_FILE_QUERY,
+        variables: { slug: 'some slug' },
       })
       expect(res).toMatchSnapshot()
     })
@@ -106,12 +107,12 @@ describe('Resolvers', () => {
         slug: 'W6HDcJoY946T8gGYLiiAJ',
         url: 'http://some_url.json',
         createdAt: moment('2021-09-01 00:00:00Z').toISOString(),
-        updatedAt: moment('2021-09-02 00:00:00Z').toISOString()
+        updatedAt: moment('2021-09-02 00:00:00Z').toISOString(),
       })
 
       const res = await server.executeOperation({
-        query:  LOTTIE_FILE_QUERY,
-        variables: { slug: 'W6HDcJoY946T8gGYLiiAJ' }
+        query: LOTTIE_FILE_QUERY,
+        variables: { slug: 'W6HDcJoY946T8gGYLiiAJ' },
       })
       expect(res).toMatchSnapshot()
     })
