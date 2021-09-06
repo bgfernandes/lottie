@@ -5,6 +5,7 @@ import LottieFilesList, {
 } from '../components/LottieFilesList'
 import { initializeApollo } from '../lib/apollo-client'
 import { LottieFile } from '../types'
+import Container from './../components/Container'
 
 export const getServerSideProps: GetServerSideProps = async (_context) => {
   const apolloClient = initializeApollo()
@@ -28,9 +29,9 @@ type RecentPageProps = {
 
 const RecentPage: NextPage<RecentPageProps> = ({ firstPageLotties }) => {
   return (
-    <div className="container mx-auto mb-10">
+    <Container>
       <LottieFilesList firstPageLotties={firstPageLotties} />
-    </div>
+    </Container>
   )
 }
 
