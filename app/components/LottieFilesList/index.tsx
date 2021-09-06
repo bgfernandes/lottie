@@ -3,8 +3,9 @@ import { gql, useQuery } from '@apollo/client'
 import Page from './Page'
 import Loading from './Loading'
 import Pagination from './Pagination'
+import { LottieFile } from '../../types'
 
-const LOTTIE_FILES_QUERY = gql`
+export const LOTTIE_FILES_QUERY = gql`
   query ($limit: Int!, $offset: Int!, $type: String) {
     lottieFiles(limit: $limit, offset: $offset, type: $type) {
       total
@@ -19,12 +20,21 @@ const LOTTIE_FILES_QUERY = gql`
   }
 `
 
+export const LOTTIE_FILES_LIST_PAGE_SIZE = 15
+
 /*
   A list of lotties with pagination
   Will show as a grid in bigger screens
 */
-export default function LottieFilesList() {
-  const [pagination, setPagination] = useState({ offset: 0, limit: 15 })
+export default function LottieFilesList({
+  firstPageLotties,
+}: {
+  firstPageLotties: [LottieFile]
+}) {
+  const [pagination, setPagination] = useState({
+    offset: 0,
+    limit: LOTTIE_FILES_LIST_PAGE_SIZE,
+  })
   const { data, loading, error } = useQuery(LOTTIE_FILES_QUERY, {
     variables: { offset: pagination.offset, limit: pagination.limit },
   })
@@ -36,7 +46,17 @@ export default function LottieFilesList() {
   let pageComp
   let paginationComp
 
-  if (loading) {
+  if (pagination.offset === 0) {
+    pageComp = <Page lotties={firstPageLotties} />
+    paginationComp = (
+      <Pagination
+        total={data?.lottieFiles?.total || 0}
+        offset={pagination.offset}
+        limit={pagination.limit}
+        onOffsetChange={onOffsetChange}
+      />
+    )
+  } else if (loading) {
     pageComp = <Loading />
     paginationComp = ''
   } else if (error) {
