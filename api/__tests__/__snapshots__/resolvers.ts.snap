@@ -39,18 +39,25 @@ Object {
 exports[`Resolvers lottieFiles query runs the lottieFiles query successfuly and returns data 1`] = `
 Object {
   "data": Object {
-    "lottieFiles": Array [
-      Object {
-        "createdAt": "1630454400000",
-        "id": "1",
-        "updatedAt": "1630540800000",
-      },
-      Object {
-        "createdAt": "1630627200000",
-        "id": "2",
-        "updatedAt": "1630713600000",
-      },
-    ],
+    "lottieFiles": Object {
+      "lotties": Array [
+        Object {
+          "createdAt": "1630627200000",
+          "id": "2",
+          "slug": "W6HDcJoY946T8gGYLiiA2",
+          "updatedAt": "1630713600000",
+          "url": "http://some_url2.json",
+        },
+        Object {
+          "createdAt": "1630454400000",
+          "id": "1",
+          "slug": "W6HDcJoY946T8gGYLiiAJ",
+          "updatedAt": "1630540800000",
+          "url": "http://some_url.json",
+        },
+      ],
+      "total": 2,
+    },
   },
   "errors": undefined,
   "extensions": undefined,
