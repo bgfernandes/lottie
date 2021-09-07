@@ -1,4 +1,5 @@
 import { GetServerSideProps, NextPage } from 'next'
+import LeftPanel from '../components/LeftPanel'
 import LottieFilesList, {
   LOTTIE_FILES_LIST_PAGE_SIZE,
   LOTTIE_FILES_QUERY,
@@ -30,7 +31,10 @@ type RecentPageProps = {
 const RecentPage: NextPage<RecentPageProps> = ({ firstPageLotties }) => {
   return (
     <Container>
-      <LottieFilesList firstPageLotties={firstPageLotties} />
+      <div className="flex flex-col md:flex-row">
+        <LeftPanel />
+        <LottieFilesList firstPageLotties={firstPageLotties} />
+      </div>
     </Container>
   )
 }
